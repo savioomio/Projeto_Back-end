@@ -1,13 +1,13 @@
 <?php
-//Inicia uma nova sessão ou resume uma sessão existente.
+//Inicia uma nova sessão
 session_start();
 
-//Atribui os valores dos campos de formulário enviados pelo método POST a variáveis
-$name = $_POST['nome'];
+//Atribui os valores dos campos de formulário enviados
+$prenome = $_POST['prenome'];
 $sobrenome = $_POST['sobrenome'];
 $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-$senha = $_POST['password'];
-$confirmasenha = $_POST['confirmasenha'];
+$senha = $_POST['senha'];
+$username = $_POST['username'];
 
 //Verifica se o e-mail inserido possui um formato válido. Caso contrário, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
 if (!$email) {
@@ -21,38 +21,32 @@ if (strlen($senha) < 8) {
     exit();
 }
 
-//Verifica se a senha e a confirmação de senha são idênticas. Caso contrário, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
-if ($senha !== $confirmasenha) {
-    echo '<script>alert("As senhas não correspondem"); window.history.back();</script>';
-    exit();
-}
-
 // inclui o arquivo de conexão com o banco de dados
 require_once 'conn.php';
 
-//Realiza uma consulta ao banco de dados para verificar se já existe um usuário cadastrado com o mesmo nome ou e-mail inseridos.
-$query = $conn->prepare("SELECT * FROM users WHERE name=:name OR email=:email");
-$query->execute(['name' => $name, 'email' => $email]);
+//Realiza uma consulta ao banco de dados para verificar se já existe um usuário cadastrado com o mesmo username ou e-mail inseridos.
+$query = $conn->prepare("SELECT * FROM usuario WHERE username=:username OR email=:email");
+$query->execute(['username' => $username, 'email' => $email]);
 $user = $query->fetch();
 
 //Caso já exista um usuário cadastrado com o mesmo nome ou e-mail inseridos, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
 if ($user) {
     if ($user['name'] == $name) {
-        echo '<script>alert("Este nome já existe em nosso banco de dados"); window.history.back();</script>';
+        echo '<script>alert("Este username já está redistrado"); window.history.back();</script>';
     } else {
-        echo '<script>alert("Este e-mail já está registrado em nosso banco de dados"); window.history.back();</script>';
+        echo '<script>alert("Este e-mail já está registrado"); window.history.back();</script>';
     }
     exit();
 }
 
-//Caso não exista um usuário cadastrado com o mesmo nome ou e-mail inseridos, insere um novo registro na tabela "users" do banco de dados com os dados fornecidos.
-$query = $conn->prepare("INSERT INTO users (name, surname, email, senha) VALUES (:name, :surname, :email, :senha)");
-$query->execute(['name' => $name, 'surname' => $sobrenome, 'email' => $email, 'senha' => $senha]);
+//Caso não exista um usuário cadastrado com o mesmo username ou e-mail inseridos, insere um novo registro na tabela "usuario" do banco de dados com os dados fornecidos.
+$query = $conn->prepare("INSERT INTO usuario (username, senha, email, prenome, sobrenome) VALUES (:username, :senha, :email, :prenome, :sobrenome)");
+$query->execute(['username' => $username, 'senha' => $senha, 'email' => $email, 'prenome' => $prenome, 'sobrenome' => $sobrenome]);
 
-$_SESSION['name'] = $name;
+$_SESSION['username'] = $username;
 $_SESSION['email'] = $email;
 
-echo '<script>alert("Registro bem-sucedido"); window.location.href = "../../";</script>';
+echo '<script>alert("Registro bem-sucedido"); window.location.href = "../pages/";</script>';
 exit();
 
 ?>
