@@ -6,7 +6,7 @@ session_start();
 $prenome = $_POST['prenome'];
 $sobrenome = $_POST['sobrenome'];
 $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-$senha = $_POST['senha'];
+$senha = substr(hash('sha256', $_POST['senha']), 0, 32);
 $username = $_POST['username'];
 
 //Verifica se o e-mail inserido possui um formato válido. Caso contrário, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
@@ -31,7 +31,7 @@ $user = $query->fetch();
 
 //Caso já exista um usuário cadastrado com o mesmo nome ou e-mail inseridos, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
 if ($user) {
-    if ($user['name'] == $name) {
+    if ($user['username'] == $username) {
         echo '<script>alert("Este username já está redistrado"); window.history.back();</script>';
     } else {
         echo '<script>alert("Este e-mail já está registrado"); window.history.back();</script>';
@@ -46,7 +46,7 @@ $query->execute(['username' => $username, 'senha' => $senha, 'email' => $email, 
 $_SESSION['username'] = $username;
 $_SESSION['email'] = $email;
 
-echo '<script>alert("Registro bem-sucedido"); window.location.href = "../pages/";</script>';
+echo '<script>alert("Registro bem-sucedido"); window.location.href = "../../pages/index.php";</script>';
 exit();
 
 ?>
