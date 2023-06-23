@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once('../metodos/sis_cadastro_login/val_sessao.php');
+validar_sessao('login.html');
+
 ?>
 
 <!doctype html>
@@ -15,9 +18,15 @@ session_start();
   </head>
   <body>
         
-    <h1>bem vindo! <p><?php echo $_SESSION['username'];?></p> </h1>
+   <div class="card text-center">
+     <div class="card-body">
+       <h4 class="card-title">Bem vindo!</h4>
+       <p class="card-text"><?php echo $_SESSION['username'];?></p>
+     </div>
+     <a href="../metodos/sis_cadastro_login/logout.php"><button type="button" name="" id="" class="btn btn-danger">Sair</button></a>
+   </div>
 
-    <a href="../metodos/sis_cadastro_login/logout.php"><button type="button" name="" id="" class="btn btn-danger">Sair</button></a>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
