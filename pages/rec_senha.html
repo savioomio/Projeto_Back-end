@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Recuperando a senha</title>
     <link rel="stylesheet" href="style/cadastroLogin.css">
     <link rel="stylesheet" href="style/mediaCadastroLogin.css">
 
@@ -24,14 +24,14 @@
 
 
                     <aside id="textoTopo">
-                        <p>Bem-vindo(a) de volta</p>
+                        <p>Esqueceu a sua senha?</p>
                     </aside>
 
                 </article>
 
                 <article id="formulario">
 
-                    <form action="../metodos/sis_cadastro_login/login.php" method="post">
+                    <form action="../metodos/sis_rec-senha/" method="post">
                         <div class="group groupEmail">
                             <input required id="iemail" name="email" type="text"
                                 class="input vazio">
@@ -39,26 +39,18 @@
                             <span class="bar"></span>
                             <label for="iemail">Email</label>
                         </div>
-
-                        <div class="group">
-                            <input required name="senha" type="password" class="input" id="isenha">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label for="isenha">Senha</label>
-                        </div>
-
                 </article>
 
                 <div>
                     <article id="cadastar">
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Enviar">
                         </form>
                     </article>
                     <article id="textoBaixo">
-                        Ainda não possui uma conta?
+                        lembro?
                     </article>
                     <article id="login" class="cadasLogin">
-                        <a href="cadastro.html"><button>Cadastre-se</button></a>
+                        <a href="login.html"><button>Voutar</button></a>
                     </article>
                 </div>
             </div>
