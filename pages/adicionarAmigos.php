@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Amigos</title>
     <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
     <link rel="stylesheet" href="style/adicionarAmigos.css">
     <script type="module" src="../javascript/dark_nuvem_lista.js"></script>
@@ -96,7 +96,7 @@
                 </li>
 
                 <li class="list">
-                    <a href="areaTrabalho.php">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="calendar-sharp"></ion-icon>
                         </span>
@@ -144,8 +144,5 @@
     </main>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
-    <script src="../script.js"></script>
-
 </body>
-
 </html>
