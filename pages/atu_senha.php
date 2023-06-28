@@ -12,6 +12,7 @@ require '../metodos/sis_cadastro_login/conn.php'; // Requer o arquivo de conexã
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualizar senha</title>
     <link rel="stylesheet" href="style/cadastroLogin.css">
+    <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
     <link rel="stylesheet" href="style/mediaCadastroLogin.css">
 </head>
 

@@ -22,6 +22,7 @@ $mail = new PHPMailer(true); // Instancia um novo objeto PHPMailer
     <title>Recuperando a senha</title>
     <link rel="stylesheet" href="style/cadastroLogin.css">
     <link rel="stylesheet" href="style/mediaCadastroLogin.css">
+    <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
 </head>
 
 <body>

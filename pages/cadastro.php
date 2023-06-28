@@ -7,7 +7,7 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="style/cadastroLogin.css" media="all">
     <link rel="stylesheet" href="style/mediaCadastroLogin.css">
-
+    <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
 
 </head>
 
