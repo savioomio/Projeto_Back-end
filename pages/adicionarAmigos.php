@@ -1,3 +1,40 @@
+<?php
+
+session_start();
+require_once('../metodos/sis_cadastro_login/val_sessao.php');
+validar_sessao('login.php');
+require_once "../metodos/sis_busca_amizade/functions.php";
+
+
+if (isset($_POST['search'])) {
+    $search_term = $_POST['search'];
+
+    // Verificando se o termo de pesquisa não está vazio
+    if (!empty($search_term)) {
+        // Obtendo os resultados da pesquisa
+        $results = searchUsers($search_term, $conn);
+
+        // Verificando se a consulta retornou resultados
+        if (count($results) > 0) {
+            // Exibe os usuários cadastrados
+            echo "Usuários Cadastrados: <br>";
+            echo "<div class style='box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); padding: 10px; margin-bottom: 10px;'>";
+            get_users($conn, $search_term);
+            echo "</div>";
+        } else {
+            echo "Nenhum resultado encontrado";
+        }
+    } else {
+        echo "Digite um nome de usuário para pesquisar";
+    }
+
+    echo "<br>";
+
+    // Encerrar o script aqui, pois a resposta será tratada pelo JavaScript
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,8 +43,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigos</title>
     <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
-    <link rel="stylesheet" href="style/adicionarAmigos.css">
     <script type="module" src="../javascript/dark_nuvem_lista.js"></script>
+    <link rel="stylesheet" href="./style/adicionarAmigos.css">
 </head>
 
 <body>
@@ -45,13 +82,19 @@
 
             <aritcle class="pesAmigos">
                 <div class="input-group margin">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" id="inputPesquisa">
+                    <form method="post">
+                        <div class="">
+                            <input required="" autocomplete="off" class="input" id="inputPesquisa" type="search" name="search" onkeypress="handleKeyPress(event)" oninput="searchUsers(this.value)">
+                        </div>
+                    </form>
 
-                    <label class="user-label" id="labelInput">Procurar Amigo</label>
+                    <div id="search_results"></div><!--Box onde aparece todos os resutados da pesquisa-->
+
+                    <!--<label class="user-label" id="labelInput">Procurar Amigo</label>
 
                     <button class="butPesquisa">
                         <ion-icon id="ionButton" name="search-outline"></ion-icon>
-                    </button>
+                    </button>-->
                 </div>
             </aritcle>
 
@@ -62,10 +105,20 @@
                 </aside>
 
                 <hr>
-                
+
                 <aside>
-                    <p>Você ainda não possue amigos</p>
+
+                    <p style='text-decoration: none !important; color: #83d8ff;'>Solicitações de amizade
+                        <?php
+                        echo return_total_solicitation($conn); //aparece o numero de solicitações
+                        solicitacoes($conn); //onde aparece as solicitações de amizade    
+                        ?>
+                    </p>
+
+
                 </aside>
+
+
                 <!-- <aside id="listaAmigos">
                     <div class="perfil">
                         <img src="#" alt="">
@@ -96,7 +149,7 @@
                 </li>
 
                 <li class="list">
-                    <a href="index.php">
+                    <a href="../index.php">
                         <span class="icon">
                             <ion-icon name="calendar-sharp"></ion-icon>
                         </span>
@@ -144,5 +197,30 @@
     </main>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+
+    <script>
+        /*Pesquisa sem Refresh utilizando ajax*/
+        function searchUsers(searchTerm) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("search_results").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("POST", "<?php echo $_SERVER['PHP_SELF']; ?>", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("search=" + searchTerm);
+        }
+
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                searchUsers(event.target.value);
+            }
+        }
+    </script>
+
+
 </body>
+
 </html>

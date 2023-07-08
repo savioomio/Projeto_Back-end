@@ -92,13 +92,13 @@ $mail = new PHPMailer(true); // Instancia um novo objeto PHPMailer
                                     $_SESSION['msg'] = "<p style='color: green'>Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!</p>";
                                     header("Location: login.php"); // Redireciona para a página de login
                                 } catch (Exception $e) {
-                                    echo "Erro: E-mail não enviado sucesso. Mailer Error: {$mail->ErrorInfo}";
+                                    echo "<script>alert(''Erro: E-mail não enviado sucesso. Mailer Error: {$mail->ErrorInfo}'); window.history.back();</script>";
                                 }
                             } else {
-                                echo "<p style='color: #ff0000'>Erro: Tente novamente!</p>";
+                                echo "<script>alert('Erro: Tente novamente!'); window.history.back();</script>";
                             }
                         } else {
-                            echo "<p style='color: #ff0000'>Erro: E-mail não encontrado!</p>";
+                            echo "<script>alert('Erro: E-mail não encontrado!'); window.history.back();</script>";
                         }
                     }
 

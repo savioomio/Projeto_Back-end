@@ -62,7 +62,7 @@ require '../metodos/sis_cadastro_login/conn.php'; // Requer o arquivo de conexã
                                     $_SESSION['msg'] = "<p style='color: green'>Senha atualizada com sucesso!</p>"; 
                                     header("Location: login.php");
                                 } else {
-                                    echo "<p style='color: #ff0000'>Erro: Tente novamente!</p>";
+                                    echo "<script>alert('Erro: Tente novamente!'); window.history.back();</script>";
                                 }
                             }
                         } else {

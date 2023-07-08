@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once('../metodos/sis_cadastro_login/val_sessao.php');
+    validar_sessao('login.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href= "style/perfil.css">
+    <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/perfil.css">
     <script type="module" src="../javascript/dark_nuvem_lista.js"></script>
 </head>
 <body>
@@ -41,12 +47,15 @@
             </section>
             <section id="dados_perfil">
                 <div id="info_usuario">
-                    <p>Jeovana Miranda</p>
-                    <p id="texto_email">@Mirandinha</p>
+                <?php
+                    require_once "../metodos/sis_busca_amizade/functions.php";
+                    $id = isset($_GET['id']) ? @$_GET['id'] : $_SESSION['id'];
+                    get_perfil($conn, $id);
+                ?>
                 </div>
-                <div id="botao_editar_perfil">
+                <!--<div id="botao_editar_perfil">
                     <button type="submit" id="editar_perfil">Editar Perfil</button>
-                </div>
+                </div>-->
             </section>
         </section>
         <section id="area_desempenho">
@@ -62,7 +71,7 @@
         <section class="navigation">
             <ul>
             <li class="list active">
-                    <a href="perfil.php">
+                    <a href="<?=$_SERVER['PHP_SELF']?>">
                         <span class="icon">
                             <ion-icon name="person-circle-sharp"></ion-icon>
                         </span>
@@ -71,7 +80,7 @@
                 </li>
 
                 <li class="list">
-                    <a href="index.php">
+                    <a href="../index.php">
                         <span class="icon">
                             <ion-icon name="calendar-sharp"></ion-icon>
                         </span>
@@ -121,3 +130,4 @@
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
 </body>
 </html>
+
