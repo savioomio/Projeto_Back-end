@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href= "style/perfil.css">
+    <script type="module" src="../javascript/dark_nuvem_lista.js"></script>
 </head>
 <body>
     <main>
@@ -34,12 +35,14 @@
         </section>
         <section id="area_editavel">
             <section id="img_perfil">
-                <div id="foto_perfil"></div>
+                <div id="foto_perfil">
+
+                </div>
             </section>
             <section id="dados_perfil">
                 <div id="info_usuario">
                     <p>Jeovana Miranda</p>
-                    <p id="texto_email">@Mirandinha/p>
+                    <p id="texto_email">@Mirandinha</p>
                 </div>
                 <div id="botao_editar_perfil">
                     <button type="submit" id="editar_perfil">Editar Perfil</button>
@@ -58,8 +61,8 @@
         </section>
         <section class="navigation">
             <ul>
-                <li class="list">
-                    <a href="#">
+            <li class="list active">
+                    <a href="perfil.php">
                         <span class="icon">
                             <ion-icon name="person-circle-sharp"></ion-icon>
                         </span>
@@ -67,8 +70,8 @@
                     </a>
                 </li>
 
-                <li class="list active">
-                    <a href="#">
+                <li class="list">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="calendar-sharp"></ion-icon>
                         </span>
@@ -84,7 +87,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#">
+                    <a href="adicionarAmigos.php">
                         <span class="icon">
                             <ion-icon name="person-add-sharp"></ion-icon>
                         </span>
@@ -116,6 +119,5 @@
     </main>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
-    <script src="../script.js"></script>
 </body>
 </html>

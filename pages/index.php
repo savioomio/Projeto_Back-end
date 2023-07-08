@@ -113,7 +113,7 @@ validar_sessao('login.php');
         <section class="navigation">
             <ul>
                 <li class="list">
-                    <a href="#">
+                    <a href="perfil.php">
                         <span class="icon">
                             <ion-icon name="person-circle-sharp"></ion-icon>
                         </span>
