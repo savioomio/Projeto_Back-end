@@ -25,14 +25,6 @@ body {
     --corQuadro: #BDBDBD;
     --navegation: #FFFFFF;
 }
-
-/*========== Botões da amizade ==============*/
-
-#adicionar-amigo{
-    text-decoration: none !important;
-    color: #83d858;
-}
-
 main.mainPrincipal {
     display: flex;
     flex-direction: column;
