@@ -18,7 +18,7 @@ if (isset($_POST['search'])) {
         if (count($results) > 0) {
             // Exibe os usuários cadastrados
             echo "Usuários Cadastrados: <br>";
-            echo "<div class style='box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); padding: 10px; margin-bottom: 10px;'>";
+            echo "<div class'caixa_res'>";
             get_users($conn, $search_term);
             echo "</div>";
         } else {
@@ -83,12 +83,12 @@ if (isset($_POST['search'])) {
             <aritcle class="pesAmigos">
                 <div class="input-group margin">
                     <form method="post">
-                        <div class="">
+                        <div>
                             <input required="" autocomplete="off" class="input" id="inputPesquisa" type="search" name="search" onkeypress="handleKeyPress(event)" oninput="searchUsers(this.value)">
                         </div>
                     </form>
 
-                    <div id="search_results"></div><!--Box onde aparece todos os resutados da pesquisa-->
+                    <div id="search_results" class="resutado_pesquisa"></div><!--Box onde aparece todos os resutados da pesquisa-->
 
                     <!--<label class="user-label" id="labelInput">Procurar Amigo</label>
 
@@ -106,9 +106,10 @@ if (isset($_POST['search'])) {
 
                 <hr>
 
-                <aside>
+                <aside class="solic_amizade">
 
-                    <p style='text-decoration: none !important; color: #83d8ff;'>Solicitações de amizade
+                    <p>
+                        Solicitações de amizade
                         <?php
                         echo return_total_solicitation($conn); //aparece o numero de solicitações
                         solicitacoes($conn); //onde aparece as solicitações de amizade    
@@ -117,19 +118,6 @@ if (isset($_POST['search'])) {
 
 
                 </aside>
-
-
-                <!-- <aside id="listaAmigos">
-                    <div class="perfil">
-                        <img src="#" alt="">
-                        <p class="pNomes">Nome</p>
-                    </div>
-                    <div class="perfil">
-                        <img src="#" alt="">
-                        <p class="pNomes">Nome</p>
-                    </div>
-                </aside> -->
-
             </article>
 
 
@@ -140,7 +128,7 @@ if (isset($_POST['search'])) {
         <section class="navigation">
             <ul>
                 <li class="list">
-                    <a href="perfil.php">
+                    <a href="./perfil.php">
                         <span class="icon">
                             <ion-icon name="person-circle-sharp"></ion-icon>
                         </span>
@@ -157,7 +145,7 @@ if (isset($_POST['search'])) {
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#">
+                    <a href="./ranking.php">
                         <span class="icon">
                             <ion-icon name="podium-sharp"></ion-icon>
                         </span>
@@ -165,7 +153,7 @@ if (isset($_POST['search'])) {
                     </a>
                 </li>
                 <li class="list active">
-                    <a href="adicionarAmigos.php">
+                    <a href="./adicionarAmigos.php">
                         <span class="icon">
                             <ion-icon name="person-add-sharp"></ion-icon>
                         </span>

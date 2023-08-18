@@ -11,7 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="shortcut icon" href="../img/logo_jsor.png" type="image/x-icon">
-    <link rel="stylesheet" href="./style/perfil.css">
+    <link rel="stylesheet" href= "style/perfil.css">
+    <link rel="stylesheet" href="style/media-perfil.css">
+    <link rel="stylesheet" href="style/comum.css">
     <script type="module" src="../javascript/dark_nuvem_lista.js"></script>
 </head>
 <body>
@@ -49,10 +51,11 @@
                 <div id="info_usuario">
                 <?php
                     require_once "../metodos/sis_busca_amizade/functions.php";
-                    $id = isset($_GET['id']) ? @$_GET['id'] : $_SESSION['id'];
+                    $id = isset($_GET['id']) ? $_GET['id'] : $_SESSION['id'];
                     get_perfil($conn, $id);
                 ?>
                 </div>
+                <a href="../metodos/sis_cadastro_login/logout.php">Sair</a>
                 <!--<div id="botao_editar_perfil">
                     <button type="submit" id="editar_perfil">Editar Perfil</button>
                 </div>-->
@@ -88,7 +91,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#">
+                    <a href="./ranking.php">
                         <span class="icon">
                             <ion-icon name="podium-sharp"></ion-icon>
                         </span>
@@ -130,4 +133,3 @@
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
 </body>
 </html>
-

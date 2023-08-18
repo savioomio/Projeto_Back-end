@@ -23,10 +23,12 @@ function get_users($conn, $search_term = null) {
         
         foreach ($get as $dados) {
             $username = $dados['username'];
-            echo "<div style='box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); padding: 10px; margin-bottom: 10px;'>";
-            echo "<a style='text-decoration: none !important; color: #83d8ff;' href='/Projeto_Back-end/pages/perfil.php?pagina=perfil&id={$username}'>{$username}</a><br>";
-            echo $dados["prenome"] . " " . $dados["sobrenome"] . "<br>";
-            echo "</div>";
+            $img_perfil = $dados['img_perfil'];
+            echo "<span>";
+            echo "<img src='img_perfil/$img_perfil'</img>";
+            echo "<div><a href='/Projeto_Back-end/pages/perfil.php?pagina=perfil&id={$username}'><p>@{$username}</p></a>";
+            echo $dados["prenome"] . " " . $dados["sobrenome"] . "</div>";
+            echo "</span>";
         }
     } else {
         echo "Nenhum resultado encontrado";

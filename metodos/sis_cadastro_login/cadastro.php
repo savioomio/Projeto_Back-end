@@ -3,7 +3,7 @@
 session_start();
 
 //Atribui os valores dos campos de formulário enviados
-$prenome = $_POST['prenome'];
+$prenome = ($_POST['prenome']);
 $sobrenome = $_POST['sobrenome'];
 $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 $senha = substr(hash('sha256', $_POST['senha']), 0, 32);
@@ -32,7 +32,7 @@ $user = $query->fetch();
 //Caso já exista um usuário cadastrado com o mesmo nome ou e-mail inseridos, exibe uma mensagem de erro em JavaScript e volta para a página anterior.
 if ($user) {
     if ($user['username'] == $username) {
-        echo '<script>alert("Este username já está redistrado"); window.history.back();</script>';
+        echo '<script>alert("Este username já está registrado"); window.history.back();</script>';
     } else {
         echo '<script>alert("Este e-mail já está registrado"); window.history.back();</script>';
     }
